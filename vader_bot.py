@@ -1,9 +1,11 @@
 import discord
 import os
 import random
+from dotenv import load_dotenv
 
-# TOKEN ortam değişkeninden alınır (Railway için önerilir)
+load_dotenv()
 TOKEN = os.getenv("TOKEN")
+client.run(TOKEN)
 
 # İzinler
 intents = discord.Intents.default()
