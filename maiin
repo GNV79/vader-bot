@@ -1,0 +1,28 @@
+import discord
+import os
+
+TOKEN = os.getenv("TOKEN")
+
+intents = discord.Intents.default()
+intents.message_content = True
+
+client = discord.Client(intents=intents)
+
+@client.event
+async def on_ready():
+    print(f'{client.user} karanlık taraf için hazır.')
+
+@client.event
+async def on_message(message):
+    if message.author == client.user:
+        return
+
+    if message.author.id == 123456789012345678:  # ← BURAYA KENDİ DISCORD ID'İNİ YAZ
+        if "güç" in message.content.lower():
+            await message.channel.send("Güç karanlık tarafta güçlüdür.")
+        elif "selam" in message.content.lower():
+            await message.channel.send("Ne selamı? Emir ver bana.")
+        else:
+            await message.channel.send("Anlamsız. Tekrar et.")
+            
+client.run(TOKEN)
